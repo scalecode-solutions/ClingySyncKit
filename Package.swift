@@ -3,7 +3,7 @@ import PackageDescription
 
 let package = Package(
     name: "ClingySyncKit",
-    platforms: [.macOS(.v14)], // SwiftData
+    platforms: [.macOS(.v14), .iOS(.v17)], // SwiftData (iOS 17+); iOS added for Clingy integration
     products: [
         .library(name: "ClingySyncKit", targets: ["ClingySyncKit"]),
     ],
