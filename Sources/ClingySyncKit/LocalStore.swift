@@ -19,8 +19,10 @@ public struct LogRecord: Sendable {
     }
 }
 
-/// The reconciler's local-persistence seam. The dummy provides a SwiftData
-/// impl over a stand-in model; Clingy provides one over its real @Models.
+/// The reconciler's local-persistence seam. Each app implements it over its
+/// own models: Clingy's production impl is ClingyTrackerSyncStore (over its
+/// real @Models, one mapper per synced type); this package's
+/// SwiftDataLocalStore is the reference/test implementation.
 public protocol LocalStore: AnyObject {
     /// Records changed locally and not yet pushed (dirty).
     func pendingPush(subjectID: UUID) throws -> [LogRecord]

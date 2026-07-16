@@ -1,7 +1,8 @@
 import Foundation
 import SwiftData
 
-/// A stand-in synced model — the dummy harness's data layer. Mirrors the
+/// A stand-in synced model — the reference/test data layer (used by this
+/// package's test suite; production Clingy uses its own store). Mirrors the
 /// *shape* of a Clingy tracker entity: a stable client UUID, subject scoping,
 /// the domain fields, a soft-delete flag, the synced server_seq, and a `dirty`
 /// flag for push tracking. Clingy's real @Models carry the same shape.

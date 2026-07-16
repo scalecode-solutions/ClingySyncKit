@@ -1,8 +1,13 @@
 import Foundation
 
 /// The offline-first reconciler: push local changes, then pull the server
-/// delta. Generic over SyncTransport + LocalStore so it's reused unchanged by
-/// the dummy harness and by Clingy.
+/// delta. Generic over SyncTransport + LocalStore, so any app-side store
+/// plugs in unchanged.
+///
+/// NB: currently nonisolated, so live Clingy (whose sync driver is @MainActor
+/// and touches the main ModelContext) inlines this push-then-pull instead of
+/// calling it. The v6 pass makes the LocalStore contract async/isolation-
+/// agnostic so this class becomes usable by the consumer again (STATUS.md §4).
 ///
 /// Push-then-pull: our dirty edits become the server's latest (a fresh
 /// server_seq), then the pull reflects them; remote edits resolve last-write-
